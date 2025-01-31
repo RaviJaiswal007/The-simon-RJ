@@ -1,0 +1,31 @@
+1. Create Your Project Structure
+my-static-site/
+│── index.html
+│── game.js
+│── style.css
+│── audios.mp3
+│── Dockerfile
+
+2. Create a Dockerfile
+Inside your project folder, create a Dockerfile:
+# Use the official lightweight Nginx image
+FROM nginx:alpine
+
+# Copy your project files to Nginx's default web directory
+COPY . /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+3. Build the Docker Image
+Run this command in your terminal:
+docker build -t my-static-site .
+
+4. Run the Docker Container
+Run your container and map port 80 to 8080:
+docker run -d -p 8080:80 my-static-site
+
+Now, open http://localhost:8080 in your browser to see your project running! 🎉
